@@ -4,8 +4,8 @@ MAINTAINER Seif Attar <iam@seifattar.net>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ADD runit.sh /dockerbase
-ADD /dockerbase/runit.sh
+ADD runit.sh /dockerbase/
+RUN /dockerbase/runit.sh
 
 # Config runit
 
