@@ -4,9 +4,11 @@ MAINTAINER Seif Attar <iam@seifattar.net>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update \
-    && apt-get install runit -y --no-install-recommends \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /var/tmp/*
+ADD runit.sh /dockerbase
+ADD /dockerbase/runit.sh
 
-ENTRYPOINT ["/usr/sbin/runsvdir-start"]
+# Config runit
+
+ADD build/runit/1 /etc/runit/1
+ADD build/runit/1.d/cleanup-pids /etc/runit/1.d/cleanup-pids
+ADD build/runit/2 /etc/runit/2
